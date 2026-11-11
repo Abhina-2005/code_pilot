@@ -1,0 +1,11 @@
+#api call Create assessment
+###
+# POST 
+# Content-Type: application/json
+
+# {
+#     "title": "Python Assessment",
+#     "description": "Python programming test",
+#     "instructions": "Answer all questions",
+#     "duration": 30
+# }

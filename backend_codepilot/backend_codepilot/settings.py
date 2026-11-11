@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'user',
     'submission'
     'rest_framework',
+<<<<<<< HEAD
     'rest_framework.authtoken',
+=======
+    "assessment",
+
+>>>>>>> fdf875324336aaae5724d1b94ead0ccbf99f6926
 ]
 
 MIDDLEWARE = [
@@ -121,3 +126,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'user.User'
+
+
