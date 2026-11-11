@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 =======
     "assessment",
+    "questions",
 
 >>>>>>> fdf875324336aaae5724d1b94ead0ccbf99f6926
 ]
