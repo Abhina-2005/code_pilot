@@ -42,12 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     "assessment",
-<<<<<<< HEAD
     "questions",
-
->>>>>>> fdf875324336aaae5724d1b94ead0ccbf99f6926
-=======
->>>>>>> 98bc54b (Rename student field to user in StudentProfile)
+    'answer',
 ]
 
 MIDDLEWARE = [
