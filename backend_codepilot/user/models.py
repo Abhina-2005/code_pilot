@@ -23,7 +23,7 @@ class User(AbstractUser):
 
 class StudentProfile(models.Model):
 
-    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
+    student = models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
 
     profile_picture = models.ImageField(upload_to="profiles/",blank=True,null=True)
 
@@ -44,13 +44,13 @@ class StudentProfile(models.Model):
 
 from django.db.models.signals import post_save
 
-def create_student_profile(sender,instance,created,**kwargs): 
+def create_student_profile(sender, instance, created, **kwargs):
 
-    if created and not instance.is_superuser:
+    if created and instance.role == "student":
 
-        StudentProfile.objects.create(user=instance)
+        StudentProfile.objects.create(student=instance)
 
-post_save.connect(create_student_profile,User)    
+post_save.connect(create_student_profile,User)
 
 
 

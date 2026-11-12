@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from user.models import User,StudentProfile
 
-class UserSerializer(serializers.ModelSerializer):
+class AdminSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(write_only=True)
 
@@ -16,7 +16,24 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
 
+        return User.objects.create_superuser(**validated_data)
+
+class StudentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+   
+
+        model = User
+
+        fields = ["id","username","password","email","phone","role"]
+        
+        read_only_fields =["id","role"]
+        
+
+    def create(self, validated_data):
+
         return User.objects.create_user(**validated_data)
+
 
 class StudentProfileSerializer(serializers.ModelSerializer):
 
