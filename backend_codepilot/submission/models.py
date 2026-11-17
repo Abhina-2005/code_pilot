@@ -8,17 +8,16 @@ class Submission(models.Model):
 
     STATUS_CHOICES = [
 
-        ('in_progress', 'In Progress'),
+        ('in_progress', 'In_Progress'),
 
         ('submitted', 'Submitted'),
     ]
 
     EVALUATION_STATUS_CHOICES = [
 
-        ('in_progress', 'n_progress'),
+        ('in_progress', 'in_progress'),
 
         ('evaluated', 'Evaluated'),
-
     ]
 
     student = models.ForeignKey(User,on_delete=models.CASCADE,related_name='submissions')
