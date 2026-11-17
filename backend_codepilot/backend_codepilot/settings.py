@@ -124,6 +124,8 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'user.User'
 
+AUTHENTICATION_BACKEND =["django.contrib.auth.backends" ,"api.backends.EmailBackEnd"]
+
 
 
 

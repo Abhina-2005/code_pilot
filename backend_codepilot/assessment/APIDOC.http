@@ -12,10 +12,10 @@ Content-Type: application/json
 Authorization: Token 
 
 {
-    "title":"Python Basics Quiz",
-    "description":"A short quiz to test basic Python knowledge.",
-    "instructions":"Complete all questions within the given time.",
-    "duration":30
+    "title": "Python Functions and Data Structures",
+    "description": "A quiz to test knowledge of Python functions, lists, tuples, dictionaries, and loops",
+    "instructions": "Answer all questions carefully within the given time",
+    "duration": 30
 }
 
 # api call for retrieve assessment
@@ -31,5 +31,5 @@ Content-Type: application/json
 Authorization: Token 
 
 {
-    "duration":60
+    "duration":70
 }

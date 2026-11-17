@@ -34,7 +34,8 @@ class AssessmentRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     
     serializer_class=AssessmentSerializer
 
-    queryset=Assessment.objects.all()    
+    queryset=Assessment.objects.all()   
+     
 
 
 
