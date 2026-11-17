@@ -15,7 +15,7 @@ class Submission(models.Model):
 
     EVALUATION_STATUS_CHOICES = [
 
-        ('in_progress', 'in_progress'),
+        ('pending', 'Pending'),
 
         ('evaluated', 'Evaluated'),
     ]
