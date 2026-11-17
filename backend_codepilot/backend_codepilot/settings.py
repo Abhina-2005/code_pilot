@@ -42,12 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     "assessment",
-<<<<<<< HEAD
     "questions",
-
->>>>>>> fdf875324336aaae5724d1b94ead0ccbf99f6926
-=======
->>>>>>> 98bc54b (Rename student field to user in StudentProfile)
 ]
 
 MIDDLEWARE = [
@@ -128,5 +123,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'user.User'
+
+AUTHENTICATION_BACKEND =["django.contrib.auth.backends" ,"api.backends.EmailBackEnd"]
 
 

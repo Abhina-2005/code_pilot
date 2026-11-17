@@ -15,7 +15,7 @@ class Submission(models.Model):
 
     EVALUATION_STATUS_CHOICES = [
 
-        ('pending', 'Pending'),
+        ('in_progress', 'n_progress'),
 
         ('evaluated', 'Evaluated'),
 
@@ -35,15 +35,10 @@ class Submission(models.Model):
 
     evaluation_status = models.CharField(max_length=20,choices=EVALUATION_STATUS_CHOICES,default='pending')
 
-    class Meta:
-
-        constraints = [
-
-            models.UniqueConstraint(
-                fields=['student', 'assessment'],
-                name='unique_student_assessment_submission')
-        ]
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
 
         return f"{self.student.username} - {self.assessment.title}"

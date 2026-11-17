@@ -1,0 +1,25 @@
+# api call for admin registration
+###
+POST http://127.0.0.1:8000/user/admin/register/
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "email":"admin123@gmail.com",
+    "password":"admin@123",
+    "phone":9652134586
+       
+}
+
+# api call for student registration
+###
+POST http://127.0.0.1:8000/user/student/register/
+Content-Type: application/json
+
+{
+    "username":"student2",
+    "email":"student2@gmail.com",
+    "password":"student@2",
+    "phone":8956231457
+       
+}

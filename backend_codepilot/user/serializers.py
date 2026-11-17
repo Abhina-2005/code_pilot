@@ -4,8 +4,6 @@ from user.models import User,StudentProfile
 
 class AdminSerializer(serializers.ModelSerializer):
 
-    password = serializers.CharField(write_only=True)
-
     class Meta:
 
         model = User
@@ -16,7 +14,7 @@ class AdminSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
 
-        return User.objects.create_superuser(**validated_data)
+        return User.objects.create_superuser(**validated_data,role = "admin")
 
 class StudentSerializer(serializers.ModelSerializer):
 
@@ -43,6 +41,6 @@ class StudentProfileSerializer(serializers.ModelSerializer):
 
         fields = "__all__"
 
-        read_only_fields = ["id","user","created_at","updated_at"]
+        read_only_fields = ["id","student","created_at","updated_at"]
 
 
