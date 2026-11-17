@@ -1,0 +1,35 @@
+
+# api call for list assessments
+###
+GET http://127.0.0.1:8000/assessment/
+Accept: application/json
+Authorization: Token 
+
+# api call for create assessments
+###
+POST http://127.0.0.1:8000/assessment/
+Content-Type: application/json
+Authorization: Token 
+
+{
+    "title":"Python Basics Quiz",
+    "description":"A short quiz to test basic Python knowledge.",
+    "instructions":"Complete all questions within the given time.",
+    "duration":30
+}
+
+# api call for retrieve assessment
+###
+GET http://127.0.0.1:8000/assessment/1/
+Accept: application/json
+Authorization: Token 
+
+# api call for update assessment
+###
+PATCH http://127.0.0.1:8000/assessment/1/
+Content-Type: application/json
+Authorization: Token 
+
+{
+    "duration":60
+}
