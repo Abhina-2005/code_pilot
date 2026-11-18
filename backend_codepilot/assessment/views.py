@@ -19,6 +19,7 @@ class AssessmentListCreateView(ListCreateAPIView):
     authentication_classes=[authentication.TokenAuthentication]
     permission_classes=[permissions.IsAuthenticated]
 
+    queryset=Assessment.objects.all() 
     serializer_class=AssessmentSerializer
 
     def get_queryset(self):
