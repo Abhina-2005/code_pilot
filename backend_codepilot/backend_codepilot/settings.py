@@ -40,14 +40,13 @@ INSTALLED_APPS = [
     'user',
     'submission'
     'rest_framework',
-<<<<<<< HEAD
     'rest_framework.authtoken',
-=======
     "assessment",
     "questions",
-
->>>>>>> fdf875324336aaae5724d1b94ead0ccbf99f6926
 ]
+
+
+#
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
