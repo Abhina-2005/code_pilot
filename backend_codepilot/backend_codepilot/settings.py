@@ -130,3 +130,5 @@ AUTH_USER_MODEL = 'user.User'
 # AUTHENTICATION_BACKENDS =["django.contrib.auth.backends.BaseBackend" ,"user.backends.EmailBackend", "user.backends.PhoneBackend"]
 
 
+
+
