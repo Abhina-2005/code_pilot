@@ -1,9 +1,11 @@
 from django.urls import path
 
-from assessment.views import AssessmentListCreateView,RetrieveUpdateDestroyAPIView
+from assessment.views import AssessmentListCreateView,AssessmentRetrieveUpdateDeleteView,AssessmentPublishview
 
 urlpatterns = [
 
-    path("assessment/",AssessmentListCreateView.as_view()),
-    path('assessment/<int:pk>/', RetrieveUpdateDestroyAPIView.as_view()),
+    path('exam/',AssessmentListCreateView.as_view()),
+    path('exam/<int:pk>/',AssessmentRetrieveUpdateDeleteView.as_view()),
+    path("exam/<int:pk>/publish/",AssessmentPublishview.as_view()),
+
 ]
