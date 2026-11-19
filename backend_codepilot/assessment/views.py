@@ -8,11 +8,11 @@ from assessment.models import Assessment
 from rest_framework import authentication,permissions
 from assessment.Permissions import OwnerOnly
 
-# from rest_framework.views import APIView
+from rest_framework.views import APIView
 
-# from rest_framework.response import Response
+from rest_framework.response import Response
 
-# from rest_framework import status
+from rest_framework import status
 
 
 class AssessmentListCreateView(ListCreateAPIView):
@@ -37,7 +37,22 @@ class AssessmentRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
 
     queryset=Assessment.objects.all()   
      
+class AssessmentPublishview(APIView):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[OwnerOnly]
 
+    def post(self,request,pk):
+        assessment=Assessment.objects.get(pk=pk)
+        assessment.status=True
+        assessment.save()
+
+        return Response(
+            {
+                "message":"Assessment published successfully",
+                "status":assessment.status
+            },
+            status=status.HTTP_200_OK
+        )
 
 
 

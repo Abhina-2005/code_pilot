@@ -24,22 +24,22 @@ class EmailBackend(BaseBackend):
 
             return None
 
-class PhoneBackend(BaseBackend):
+# class PhoneBackend(BaseBackend):
 
-    def authenticate(self, request, username = None, password = None, **kwargs):
+#     def authenticate(self, request, username = None, password = None, **kwargs):
 
-        try:
+#         try:
 
-            user_object = User.objects.get(phone=username)
+#             user_object = User.objects.get(phone=username)
 
-            if user_object.check_password(password):
+#             if user_object.check_password(password):
 
-                return user_object
+#                 return user_object
 
-            else:
+#             else:
 
-                return user_object
+#                 return user_object
 
-        except:
+#         except:
 
-            return None
+#             return None
