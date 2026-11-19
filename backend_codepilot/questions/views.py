@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 
 # Create your views here.
 
@@ -12,6 +12,7 @@ from questions.permissions import Owneronly
 from  questions.serializers import QuestionSerializer
 
 from questions.models import Question
+from assessment.models import Assessment
 
 class QuestionListCreateView (CreateAPIView,ListAPIView) :
 
@@ -27,8 +28,17 @@ class QuestionListCreateView (CreateAPIView,ListAPIView) :
         assessment__creator=self.request.user
     )
 
+    #def perform_create(self, serializer):
+    #return serializer.save()
+
     def perform_create(self, serializer):
-        return serializer.save()
+        assessment = get_object_or_404(
+            Assessment,
+            id=self.kwargs['pk'],
+            creator=self.request.user
+        )
+
+        serializer.save(assessment=assessment)
 
 class QuestionRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
 
@@ -36,4 +46,9 @@ class QuestionRetrieveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     permission_classes = [Owneronly]
     serializer_class = QuestionSerializer
 
-    quesryset = Question.objects.all()
+    # quesryset = Question.objects.all()
+
+    def get_queryset(self):
+        return Question.objects.filter(
+            assessment__creator=self.request.user
+        )
