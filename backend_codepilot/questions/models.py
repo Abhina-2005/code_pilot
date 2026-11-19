@@ -10,9 +10,7 @@ from assessment.models import Assessment
 
 class Question(models.Model):
 
-    assessment = models.ForeignKey(Assessment,
-                                   on_delete=models.CASCADE,
-                                   related_name="questions")
+    assessment = models.ForeignKey(Assessment,on_delete=models.CASCADE,related_name="questions")
 
     prompt = models.TextField()
 

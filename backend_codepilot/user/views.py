@@ -1,25 +1,24 @@
 
 from django.shortcuts import render
 
-from rest_framework.views import APIView
+# from rest_framework.views import APIView
 
-from user.models import User,StudentProfile
+# from rest_framework.authtoken.views import ObtainAuthToken
 
-from user.serializers import UserSerializer
+# from user.models import User,StudentProfile
+
+from user.serializers import AdminSerializer,StudentSerializer
 
 from rest_framework.generics import CreateAPIView
 
-class RegisterView(CreateAPIView):
+class AdminCreateView(CreateAPIView):
 
-    serializer_class = UserSerializer
-
-class AdminCreateView(APIView):
-
-    def post(self,request):
-
-        form_data = request.data
-
-        serializer_instance = UserSerializer(data=form_data)
+    serializer_class = AdminSerializer
 
 
+class StudentCreateView(CreateAPIView):
+
+    serializer_class = StudentSerializer
+
+    
 

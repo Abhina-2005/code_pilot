@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
-    'submission'
+    'submission',
     'rest_framework',
     'rest_framework.authtoken',
     "assessment",
@@ -126,5 +126,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'user.User'
+
+# AUTHENTICATION_BACKENDS =["django.contrib.auth.backends.BaseBackend" ,"user.backends.EmailBackend", "user.backends.PhoneBackend"]
 
 

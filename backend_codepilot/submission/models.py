@@ -8,7 +8,7 @@ class Submission(models.Model):
 
     STATUS_CHOICES = [
 
-        ('in_progress', 'In Progress'),
+        ('in_progress', 'In_Progress'),
 
         ('submitted', 'Submitted'),
     ]
@@ -18,7 +18,6 @@ class Submission(models.Model):
         ('pending', 'Pending'),
 
         ('evaluated', 'Evaluated'),
-
     ]
 
     student = models.ForeignKey(User,on_delete=models.CASCADE,related_name='submissions')
@@ -35,15 +34,10 @@ class Submission(models.Model):
 
     evaluation_status = models.CharField(max_length=20,choices=EVALUATION_STATUS_CHOICES,default='pending')
 
-    class Meta:
-
-        constraints = [
-
-            models.UniqueConstraint(
-                fields=['student', 'assessment'],
-                name='unique_student_assessment_submission')
-        ]
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
 
         return f"{self.student.username} - {self.assessment.title}"
