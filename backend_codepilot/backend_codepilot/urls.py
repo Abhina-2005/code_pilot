@@ -23,7 +23,7 @@ urlpatterns = [
     path('assessment/',include('assessment.urls')),
     path('questions/',include('questions.urls')),
     path('user/',include('user.urls')),
-    # path("submission/",include("submission.urls")),
+    path("submission/",include("submission.urls")),
     
 ]
 

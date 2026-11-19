@@ -42,3 +42,4 @@ class Submission(models.Model):
 
         return f"{self.student.username} - {self.assessment.title}"
 
+
