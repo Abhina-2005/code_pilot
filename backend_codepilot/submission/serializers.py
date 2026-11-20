@@ -10,6 +10,6 @@ class SubmissionSerializer(serializers.ModelSerializer):
 
         fields = "__all__"
 
-        read_only_fields = ['id','student','assessment','started_at','submitted_at','created_at','updated_at']
+        read_only_fields = ['id','student','assessment','started_at','created_at','updated_at']
 
-        
+       
