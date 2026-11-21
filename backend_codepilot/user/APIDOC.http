@@ -36,6 +36,7 @@ Content-Type: application/json
 
 #  "token": "415c13cd1226a9335bc1879650ad9285af0621f8"
 
+
 #api call for student login
 ###
 POST  http://127.0.0.1:8000/user/student/token/

@@ -1,99 +1,105 @@
 from django.shortcuts import render
 
-from rest_framework.generics import CreateAPIView,ListAPIView,RetrieveAPIView,UpdateAPIView
-
-from rest_framework import authentication,permissions
+# Create your views here.
+from submission.models import Submission
 
 from assessment.models import Assessment
 
-from submission.models import Submission
+from django.shortcuts import get_object_or_404
+
+from submission.serializers import SubmissionSerializer 
+
+from rest_framework import authentication,permissions
+
+from rest_framework.generics import CreateAPIView,ListAPIView,RetrieveAPIView
+
+from submission.permissions import IsOwner
 
 from assessment.Permissions import OwnerOnly
 
-from submission.serializers import SubmissionSerializer
-
-from submission.permissions import IsOwner,AdminOnly
-
-from rest_framework.views import APIView
 
 from rest_framework.response import Response
 
-from django.utils import timezone
 
 class SubmissionCreateView(CreateAPIView):
 
-    authentication_classes = [authentication.TokenAuthentication]
+    serializer_class=SubmissionSerializer
+
+    authentication_classes=[authentication.TokenAuthentication]
 
     permission_classes = [IsOwner]
 
     def perform_create(self, serializer):
 
-        return serializer.save(student=self.request.user)
-    
+        assessment = get_object_or_404(Assessment,id=self.kwargs['pk'])
+
+        serializer.save(student=self.request.user,assessment=assessment)
+
+
 
 class SubmissionListView(ListAPIView):
 
-    serializer_class = SubmissionSerializer
+    serializer_class=SubmissionSerializer
 
-    queryset = Submission.objects.all()
+    queryset=Submission.objects.all()
 
-    authentication_classes = [authentication.TokenAuthentication]
-    
-    permission_classes = [OwnerOnly]
+    authentication_classes=[authentication.TokenAuthentication]
 
+    permission_classes=[IsOwner]
+
+   
 
 class SubmissionRetrieveView(RetrieveAPIView):
 
-    serializer_class = SubmissionSerializer
+    serializer_class=SubmissionSerializer
 
-    queryset = Submission.objects.all()
+    queryset=Submission.objects.all()
 
-    authentication_classes = [authentication.TokenAuthentication]
+    authentication_classes=[authentication.TokenAuthentication]
 
-    permission_classes = [IsOwner]
+    permission_classes=[IsOwner]
 
-class SubmissionStatusView(APIView):
+    
 
-    authentication_classes = [authentication.TokenAuthentication]
 
-    def get(self, request, pk):
+class SubmissionStatusView(RetrieveAPIView):
+
+    authentication_classes=[authentication.TokenAuthentication]
+
+    permission_classes=[IsOwner]
+
+    def get(self,request,pk):
 
         try:
-            submission = Submission.objects.get(id=pk,student=request.user)
+            submission=Submission.objects.get(id=pk,student=request.user)
 
             return Response({
 
-                "submission_id": submission.id,
+                "submission_id": submission.pk,
 
-                "status": submission.status,
-
-                "evaluation_status": submission.evaluation_status
+                "status": submission.status
             })
-
         except Submission.DoesNotExist:
 
             return Response({
 
-                "message": "Submission not found"
-
+                 "message": "Assessment not submitted yet"
             })
 
-class SubmissionFinalAssessmentView(UpdateAPIView):
+class SubmissionFinalAssessmentView(CreateAPIView):
 
     serializer_class = SubmissionSerializer
 
-    queryset = Submission.objects.all()
+    authentication_classes=[authentication.TokenAuthentication]
 
-    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes=[IsOwner]
 
-    def patch(self, request, pk):
+    def post(self,request,pk):
 
         try:
-            submission = Submission.objects.get(id=pk,student=request.user)
+            submission=Submission.objects.get(id=pk,student=request.user)
 
-            submission.status = "submitted"
-
-            submission.submitted_at = timezone.now()
+            submission.status="submitted"
 
             submission.save()
 
@@ -102,17 +108,18 @@ class SubmissionFinalAssessmentView(UpdateAPIView):
                 "message": "Assessment submitted successfully",
 
                 "status": submission.status
-            })
 
+            })
+        
         except Submission.DoesNotExist:
 
             return Response({
 
                 "message": "Submission not found"
-
             })
 
-class SubmissionEvaluateView(UpdateAPIView):
+
+class SubmissionEvaluateView(RetrieveAPIView):
 
     serializer_class = SubmissionSerializer
 
@@ -120,61 +127,40 @@ class SubmissionEvaluateView(UpdateAPIView):
 
     authentication_classes = [authentication.TokenAuthentication]
 
-    permission_classes = [AdminOnly]
+    permission_classes = [IsOwner]
 
-    def patch(self, request, pk):
+    def post(self, request, pk):
 
         try:
             submission = Submission.objects.get(id=pk)
 
-            submission.total_marks = request.data.get(
+            submission.marks = request.data.get("marks")
 
-                "total_marks",
+            submission.feedback = request.data.get("feedback")
 
-                submission.total_marks
-            )
-
-            submission.evaluation_status = "evaluated"
+            submission.status = "evaluated"
 
             submission.save()
 
             return Response({
 
-                "message": "Submission evaluated successfully",
+                "message": "Assessment evaluated successfully",
 
-                "submission_id": submission.id,
+                "submission_id": submission.pk,
 
-                "total_marks": submission.total_marks,
+                "marks": submission.marks,
 
-                "evaluation_status": submission.evaluation_status
+                "feedback": submission.feedback,
 
+                "status": submission.status
             })
 
         except Submission.DoesNotExist:
 
             return Response({
-
+                
                 "message": "Submission not found"
-
             })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
+        

@@ -5,16 +5,16 @@ SubmissionFinalAssessmentView,SubmissionEvaluateView)
 
 urlpatterns = [
     
-    path("assessment/<int:pk>/submissions/",SubmissionCreateView.as_view()),
+    path("assessment/<int:pk>/submit/",SubmissionCreateView.as_view()),
 
-    path("submissions/ ",SubmissionListView.as_view()),
+    path("submit/",SubmissionListView.as_view()),
    
-    path("<int:pk>/",SubmissionRetrieveView.as_view()),
+    path("submit/<int:pk>/",SubmissionRetrieveView.as_view()),
 
-    path("submissions/<int:pk>/status/",SubmissionStatusView.as_view()),
+    path("submit/<int:pk>/status/",SubmissionStatusView.as_view()),
 
-    path("submissions/<int:pk>/submit/",SubmissionFinalAssessmentView.as_view()),
+    path("submit/<int:pk>/final/",SubmissionFinalAssessmentView.as_view()),
 
-    path("submissions/<int:pk>/evaluate/",SubmissionEvaluateView.as_view()),
+    path("submit/<int:pk>/evaluate/",SubmissionEvaluateView.as_view()),
 ]
 

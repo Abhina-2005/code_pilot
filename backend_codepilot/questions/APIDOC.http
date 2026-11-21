@@ -24,7 +24,7 @@ Authorization:  Token a2592e53f24805358392a10dc0f202e139063d99
 # retrieving questions
 
 ###
-GET http://127.0.0.1:8000/questions/task/1/
+GET http://127.0.0.1:8000/questions/task/2/
 Accept: application/json
 Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
 
@@ -32,7 +32,7 @@ Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
 # update an existing question 
 
 ###
-PUT http://127.0.0.1:8000/questions/task/1/
+PUT http://127.0.0.1:8000/questions/task/2/
 Content-Type: application/json
 Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
 
