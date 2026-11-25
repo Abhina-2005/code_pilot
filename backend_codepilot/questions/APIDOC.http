@@ -1,0 +1,52 @@
+# listing questions
+
+###
+GET http://127.0.0.1:8000/questions/assessment/1/task
+Accept: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+
+# Creating New Question
+
+###
+POST http://127.0.0.1:8000/questions/assessment/1/task/
+Content-Type: application/json
+Authorization:  Token a2592e53f24805358392a10dc0f202e139063d99
+
+{
+    
+    "prompt": "Write a Python program to check whether a number is prime.",
+    "programming_language": "python",
+    "maximum_marks": 10,
+    "display_order": 1
+}
+
+# retrieving questions
+
+###
+GET http://127.0.0.1:8000/questions/task/2/
+Accept: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+
+# update an existing question 
+
+###
+PUT http://127.0.0.1:8000/questions/task/2/
+Content-Type: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+{
+    "prompt": "Write a Python program to check whether a number is even.",
+    "programming_language": "python",
+    "maximum_marks": 10,
+    "display_order": 1
+}
+
+# delete an existing question
+
+###
+DELETE  http://127.0.0.1:8000/questions/task/1/
+Accept: application/json
+Authorization: Token  a2592e53f24805358392a10dc0f202e139063d99
+

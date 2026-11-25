@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'answer',
 ]
 
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -124,5 +127,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'user.User'
+
+# AUTHENTICATION_BACKENDS =["django.contrib.auth.backends.BaseBackend" ,"user.backends.EmailBackend", "user.backends.PhoneBackend"]
+
+
 
 

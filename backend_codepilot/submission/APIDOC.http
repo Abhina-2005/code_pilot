@@ -1,0 +1,48 @@
+
+
+# API CALL FOR CREATE SUBMISSION
+###
+POST http://127.0.0.1:8000/submission/assessment/1/submit/
+Authorization: Token a12e265df9ab2a8bcecd8ff75ad5c109fcca2153
+Content-Type: application/json
+
+
+
+
+# API CALL FOR LIST ALL SUBMISSIONS (ADMIN ONLY)
+###
+GET http://127.0.0.1:8000/submission/submit/
+Accept: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+
+# API CALL FOR RETRIEVE SUBMISSION BY ID
+###
+GET http://127.0.0.1:8000/submission/submit/1/
+Accept: application/json
+Authorization: Token a12e265df9ab2a8bcecd8ff75ad5c109fcca2153
+
+
+# API CALL FOR CHECK SUBMISSION STATUS
+###
+GET http://127.0.0.1:8000/submission/submit/1/status/
+Accept: application/json
+Authorization: Token a12e265df9ab2a8bcecd8ff75ad5c109fcca2153
+
+
+# API CALL FOR FINAL SUBMIT ASSESSMENT
+###
+POST  http://127.0.0.1:8000/submission/submit/1/final/
+Authorization: Token a12e265df9ab2a8bcecd8ff75ad5c109fcca2153
+Content-Type: application/json
+
+
+
+# API CALL FOR EVALUATE SUBMISSION (ADMIN ONLY)
+###
+POST  http://127.0.0.1:8000/submission/submit/1/evaluate/
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+Content-Type: application/json
+
+
+

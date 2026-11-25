@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from assessment.views import AssessmentListCreateView,RetrieveUpdateDestroyAPIView
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("assessment/",AssessmentListCreateView.as_view()),
-    path('assessment/<int:pk>/', RetrieveUpdateDestroyAPIView.as_view()),
+    path('assessment/',include('assessment.urls')),
+    path('questions/',include('questions.urls')),
+    path('user/',include('user.urls')),
+    path("submission/",include("submission.urls")),
+    
 ]
+

@@ -1,0 +1,41 @@
+
+# api call for list assessments
+###
+GET  http://127.0.0.1:8000/assessment/exam/
+Accept: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+#api call for creating assessment
+###
+POST http://127.0.0.1:8000/assessment/exam/
+Content-Type: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+{
+    "title": "Python Functions and Data Structures",
+    "description": "A quiz to test knowledge of Python functions, lists, tuples, dictionaries, and loops",
+    "instructions": "Answer all questions carefully within the given time",
+    "duration": 30
+}
+
+# api call for retrieve assessment
+###
+GET http://127.0.0.1:8000/assessment/exam/1/
+Accept: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+# api call for update assessment
+###
+PATCH http://127.0.0.1:8000/assessment/exam/1/
+Content-Type: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
+
+{
+    "duration":70
+}
+
+#api call for publish assessment
+###
+POST http://127.0.0.1:8000/assessment/exam/1/publish/
+Content-Type: application/json
+Authorization: Token a2592e53f24805358392a10dc0f202e139063d99
